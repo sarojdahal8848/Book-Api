@@ -10,6 +10,7 @@ namespace simple_crud.Interfaces
     {
         public Task<List<Book>> GetBooks();
         public Task<Book> GetBookById(int id);
+        public Task<string> SaveImage(IFormFile file);
         public Task<Book> CreateBook(Book book);
         public Task<Book> UpdateBook(int id, Book book);
         public Task<bool> DeleteBook(int id);

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using simple_crud.Db;
 
@@ -11,9 +12,11 @@ using simple_crud.Db;
 namespace simple_crud.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240427161144_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,10 +36,6 @@ namespace simple_crud.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -55,47 +54,42 @@ namespace simple_crud.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8052),
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(4997),
                             Name = "Basic of Physics",
                             Price = 100,
-                            UpdatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8053)
+                            UpdatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(4998)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8056),
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5000),
                             Name = "Chemistry of Nature",
                             Price = 200,
-                            UpdatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8057)
+                            UpdatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5001)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8059),
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5002),
                             Name = "Computer Programming",
                             Price = 300,
-                            UpdatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8060)
+                            UpdatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5003)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8063),
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5005),
                             Name = "Mathematics",
                             Price = 150,
-                            UpdatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8063)
+                            UpdatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5005)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8066),
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5007),
                             Name = "Physics of Nature",
                             Price = 250,
-                            UpdatedAt = new DateTime(2024, 4, 28, 14, 25, 50, 945, DateTimeKind.Utc).AddTicks(8066)
+                            UpdatedAt = new DateTime(2024, 4, 27, 16, 11, 42, 952, DateTimeKind.Utc).AddTicks(5008)
                         });
                 });
 #pragma warning restore 612, 618

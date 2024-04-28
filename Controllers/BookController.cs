@@ -51,13 +51,22 @@ namespace simple_crud.Controllers
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(BookDto))]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Post([FromBody] CreateBookDto bookDto)
+        public async Task<IActionResult> Post([FromForm] CreateBookDto bookDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            if(bookDto.Image == null)
+                return BadRequest("No image uploaded.");
+
+
             var book = _mapper.Map<Book>(bookDto);
+
+            var imagePath = await _bookRepository.SaveImage(bookDto.Image);
+            book.ImagePath = imagePath;
+
             await _bookRepository.CreateBook(book);
+
             var createdBook = _mapper.Map<BookDto>(book);
             return CreatedAtAction("Get", new { id = createdBook.Id }, createdBook);
         }
@@ -66,7 +75,7 @@ namespace simple_crud.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Put(int id, [FromBody] CreateBookDto bookDto)
+        public async Task<IActionResult> Put(int id, [FromForm] CreateBookDto bookDto)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -77,6 +86,8 @@ namespace simple_crud.Controllers
                 return NotFound();
 
             var bookMap = _mapper.Map<Book>(bookDto);
+            var imagePath = await _bookRepository.SaveImage(bookMap.Image);
+            bookMap.ImagePath = imagePath;
             await _bookRepository.UpdateBook(id, bookMap);
             return NoContent();
         }
