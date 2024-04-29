@@ -12,6 +12,5 @@ namespace simple_crud.Dto
         public string Name { get; set; } = String.Empty;
         public string? ImagePath { get; set; }
         public int Price { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
