@@ -42,24 +42,6 @@ namespace simple_crud.Repository
             return await _context.Books.ToListAsync();
         }
 
-        public async Task<string> SaveImage(IFormFile file)
-        {
-            var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-            if(!Directory.Exists(uploadFolder))
-                Directory.CreateDirectory(uploadFolder);
-
-            var uniqueFileName = Guid.NewGuid().ToString() + "-" + Path.GetExtension(file.FileName);
-
-            var filePath = Path.Combine(uploadFolder, uniqueFileName);
-
-            using(var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(fileStream);
-            }
-
-            return "/uploads/" + uniqueFileName;
-        }
-
         public async Task<Book> UpdateBook(int id, Book book)
         {
             var existingBook = await _context.Books.FindAsync(id);

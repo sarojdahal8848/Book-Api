@@ -21,3 +21,13 @@ jobs:
 
             - name: Build
               run: dotnet build --configuration Release --no-restore
+
+            - name: Publish
+              run: dotnet publish --configuration Release --output ./publish
+
+            - name: Deploy
+              uses: azure/webapps-deploy@v2
+              with:
+                  app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+                  slot-name: ${{ secrets.AZURE_WEBAPP_SLOT_NAME }}
+

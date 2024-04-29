@@ -15,11 +15,13 @@ namespace simple_crud.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IImageStorageRepository _imageStorageRepository;
         private readonly IMapper _mapper;
-        public BookController(IBookRepository bookRepository, IMapper mapper)
+        public BookController(IBookRepository bookRepository, IMapper mapper, IImageStorageRepository imageStorageRepository)
         {
             _bookRepository = bookRepository;
             _mapper = mapper;
+            _imageStorageRepository = imageStorageRepository;
 
         }
 
@@ -62,7 +64,7 @@ namespace simple_crud.Controllers
 
             var book = _mapper.Map<Book>(bookDto);
 
-            var imagePath = await _bookRepository.SaveImage(bookDto.Image);
+            var imagePath = await _imageStorageRepository.SaveImage(bookDto.Image);
             book.ImagePath = imagePath;
 
             await _bookRepository.CreateBook(book);
@@ -86,7 +88,8 @@ namespace simple_crud.Controllers
                 return NotFound();
 
             var bookMap = _mapper.Map<Book>(bookDto);
-            var imagePath = await _bookRepository.SaveImage(bookMap.Image);
+            var imagePath = await _imageStorageRepository.SaveImage(bookMap.Image);
+
             bookMap.ImagePath = imagePath;
             await _bookRepository.UpdateBook(id, bookMap);
             return NoContent();
